@@ -3,7 +3,13 @@
   "version": "2.5.0",
   "description": "A simple and beautiful Vue chat component backend agnostic.",
   "main": "./dist/vue-beautiful-chat.umd.min.js",
-  "repository": "https://github.com/mattmezza/vue-beautiful-chat.git",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kamaledvoy/vue-beautiful-chat.git"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/kamaledvoy//npm.pkg.github.com/:_authToken=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"
+  },
   "author": "Matteo Merola <mattmezza@gmail.com>",
   "license": "MIT",
   "scripts": {
