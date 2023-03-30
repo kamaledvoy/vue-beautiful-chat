@@ -30,15 +30,18 @@
         ref="userInput"
         role="button"
         tabIndex="0"
+        designMode="on"
         contentEditable="true"
         :placeholder="placeholder"
         class="sc-user-input--text"
         :style="{color: colors.userInput.text}"
         @focus="setInputActive(true)"
         @blur="setInputActive(false)"
-        @keydown="handleKey"
         @focusUserInput="focusUserInput()"
+        @keydown="handleKey"
       ></div>
+
+      
       <div class="sc-user-input--buttons">
         <div v-if="showEmoji && !isEditing" class="sc-user-input--button">
           <EmojiIcon :on-emoji-picked="_handleEmojiPicked" :color="colors.userInput.text" />
@@ -179,22 +182,29 @@ export default {
     setInputActive(onoff) {
       this.inputActive = onoff
     },
+    // handleKey(event) {
+    //   if (event.keyCode === 13 && !event.shiftKey) {
+    //     if (!this.isEditing) {
+    //       this._submitText(event)
+    //     } else {
+    //       this._editText(event)
+    //     }
+    //     this._editFinish()
+    //     event.preventDefault()
+    //   } else if (event.keyCode === 27) {
+    //     this._editFinish()
+    //     event.preventDefault()
+    //   }
+    //   this.$emit('onType')
+    // },
     handleKey(event) {
-      if (event.keyCode === 13 && !event.shiftKey) {
-        if (!this.isEditing) {
-          this._submitText(event)
-        } else {
-          this._editText(event)
-        }
-        this._editFinish()
-        event.preventDefault()
-      } else if (event.keyCode === 27) {
+      if (event.keyCode === 27) {
         this._editFinish()
         event.preventDefault()
       }
-
       this.$emit('onType')
     },
+
     focusUserInput() {
       this.$nextTick(() => {
         this.$refs.userInput.focus()
